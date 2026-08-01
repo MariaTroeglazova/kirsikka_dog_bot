@@ -1,4 +1,3 @@
-# src/services/profile_service.py
 from database import queries
 from database import connection
 

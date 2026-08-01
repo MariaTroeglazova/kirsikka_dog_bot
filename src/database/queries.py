@@ -1,4 +1,3 @@
-# src/database/queries.py
 from sqlalchemy import select, func
 from .connection import async_session_maker
 from .models import DogProfile
