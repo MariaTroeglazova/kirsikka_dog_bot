@@ -3,14 +3,14 @@ from aiogram.filters import Command, or_f
 from aiogram.types import Message
 from aiogram import F
 
-from services.profile_service import DogProfile
+from services.profile_service import DogProfileService
 
 router = Router()
-dog_profile = DogProfile()
+dog_profile = DogProfileService()
 
 
 @router.message(Command("count"))
-async def cmd_count(message: Message):
+async def cmd_count(message: Message) -> None:
     """Показать количество записей в БД"""
     try:
         count = await dog_profile.get_row_count()
@@ -20,7 +20,7 @@ async def cmd_count(message: Message):
 
 
 @router.message(or_f(Command("dog_profile"), F.text == "🐕 Профиль собаки"))
-async def cmd_dog_profile(message: Message):
+async def cmd_dog_profile(message: Message) -> None:
     """Показать профиль собаки"""
     try:
         dog = await dog_profile.get_first()

@@ -8,7 +8,7 @@ router = Router()
 
 
 @router.message(Command("start"))
-async def cmd_start(message: Message):
+async def cmd_start(message: Message) -> None:
     """Обработчик команды /start"""
     await message.answer(
         "👋 Привет! Я твой личный пет-проект!\nИспользуй кнопки ниже для навигации:",
@@ -17,7 +17,7 @@ async def cmd_start(message: Message):
 
 
 @router.message(or_f(Command("help"), F.text == "🤖 Помощь"))
-async def cmd_help(message: Message):
+async def cmd_help(message: Message) -> None:
     """Обработчик команды /help"""
     await message.answer(
         "🤖 Доступные команды:\n"
@@ -30,6 +30,6 @@ async def cmd_help(message: Message):
 
 
 @router.message(Command("stop"))
-async def cmd_stop(message: Message):
+async def cmd_stop(message: Message) -> None:
     """Обработчик команды /stop"""
     await message.answer("🛑 Бот остановлен! До свидания!")

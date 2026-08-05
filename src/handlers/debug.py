@@ -5,7 +5,7 @@ router = Router()
 
 
 @router.message()
-async def handle_other(message: Message):
+async def handle_other(message: Message) -> None:
     """Обработчик всех остальных сообщений"""
     user_text = message.text
     await message.answer(f"Ты написал: {user_text}")

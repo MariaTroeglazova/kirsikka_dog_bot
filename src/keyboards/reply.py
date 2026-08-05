@@ -1,8 +1,8 @@
-from aiogram.types import KeyboardButton
+from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 
-def get_main_keyboard():
+def get_main_keyboard() -> ReplyKeyboardMarkup:
     """Создает главную клавиатуру с кнопками"""
     builder = ReplyKeyboardBuilder()
 

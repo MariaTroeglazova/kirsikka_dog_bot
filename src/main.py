@@ -4,31 +4,27 @@ import sys
 
 from aiogram import Bot, Dispatcher
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from handlers import common_router, profile_router
 from handlers.debug import router as debug_router
-from services.profile_service import DogProfile
+from services.profile_service import DogProfileService
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 src_dir = os.path.dirname(os.path.abspath(__file__))
 project_dir = os.path.dirname(src_dir)
 
 with open(os.path.join(project_dir, 'tgtoken'), 'r', encoding='utf-8') as file:
     TOKEN = file.read().strip()
 
-# Инициализация бота
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# Инициализация сервисов
-dog_profile = DogProfile()
+dog_profile = DogProfileService()
 
 
-async def on_startup():
+async def on_startup() -> None:
     """Действия при запуске бота"""
     print("🔄 Инициализация БД...")
 
-    # Создаём таблицы
     await dog_profile.init_db()
 
     # Гарантируем, что есть одна запись
@@ -39,8 +35,6 @@ async def on_startup():
 
 
 async def main():
-    """Главная функция"""
-    # Регистрируем роутеры
     dp.include_router(common_router)
     dp.include_router(profile_router)
     dp.include_router(debug_router)
